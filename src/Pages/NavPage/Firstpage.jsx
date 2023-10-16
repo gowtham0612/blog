@@ -1,5 +1,5 @@
 import React from "react";
-import Page from "../../Components/Page-1/Firstcomponent";
+import Page from "../../Components/NavComp/Firstcomponent";
 
 const Firstpage = () => {
   return (

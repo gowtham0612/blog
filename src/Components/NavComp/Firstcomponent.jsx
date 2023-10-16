@@ -1,6 +1,7 @@
 import React from "react";
 import "../../Style/firstComponent.css";
-import big from '../../assests/Image.svg'
+import { Link } from "react-router-dom";
+
 const Page = () => {
   return (
     <div>
@@ -66,10 +67,10 @@ const Page = () => {
             </svg>
           </div>
           <div className="navlink">
-            <h5>Home</h5>
-            <h5>Blog</h5>
-            <h5>Pages</h5>
-            <h5>Contact</h5>
+            <Link to="/">Home</Link>
+            <Link to="/Blog">Blog</Link>
+            <Link to="/Pages">Pages</Link>
+            <Link to="/Contact">Contact</Link>
           </div>
 
           <div className="search">
@@ -108,10 +109,6 @@ const Page = () => {
           </div>
         </div>
       </header>
-      <div className="headerimg">
-      <img src={big} alt="img"/>
-      <h3 className="overlayStyles">Technology</h3>
-    </div>
     </div>
   );
 };
