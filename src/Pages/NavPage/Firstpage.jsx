@@ -31,9 +31,11 @@ const Firstpage = () => {
   useEffect(() => {
     if (loading) return;
     const interval = setInterval(() => {
+      console.log('Auth-Verify')
       if (token) {
+        
         axios
-          .post("http://localhost:4000/verify-token", { token: token })
+          .post(`${process.env.HOST}/api/v1/auth/verify-token`, { token: token })
           .then((response) => {
             if (!response.data.isValid) {
               auth.signOut();
@@ -66,9 +68,9 @@ const Firstpage = () => {
     setUser(null);
     setToken(null);
     localStorage.removeItem("userToken");
-    navigate("/Contact");
+    navigate("/");
   };
-  
+
   if (loading) return null;
 
   return (
