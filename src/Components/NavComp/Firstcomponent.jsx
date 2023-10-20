@@ -2,7 +2,7 @@ import React from "react";
 import "../../Style/firstComponent.css";
 import { Link } from "react-router-dom";
 
-const Page = () => {
+const Page = ({ user, onSignIn,onLogout }) => {
   return (
     <div>
       <header className="topheader">
@@ -53,14 +53,14 @@ const Page = () => {
                 fill="#141624"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M17.7 21.7592H14.1932C13.0747 21.7592 12.0968 22.5135 11.8129 23.5953L10.4373 28.8354H15.871C17.8811 28.8354 19.6384 27.4799 20.1487 25.5357L20.2666 25.0865C20.7082 23.4043 19.4392 21.7592 17.7 21.7592ZM16.6646 23.3514H14.759C14.1206 23.3514 13.5623 23.7814 13.3993 24.3988L12.6486 27.2432H15.6532C16.7647 27.2432 17.7364 26.4977 18.0186 25.4284L18.0838 25.1814C18.328 24.2562 17.6263 23.3514 16.6646 23.3514Z"
                 fill="#141624"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M14.9971 11.7427C15.2811 10.6609 16.2589 9.90663 17.3774 9.90663H20.8843C22.6235 9.90663 23.8925 11.5517 23.4509 13.2339L23.333 13.6831C22.8227 15.6273 21.0654 16.9828 19.0553 16.9828H13.6216L14.9971 11.7427ZM16.5836 12.5462C16.7465 11.9289 17.3049 11.4988 17.9433 11.4988H19.8489C20.8106 11.4988 21.5123 12.4036 21.2681 13.3288L21.2029 13.5758C20.9207 14.6451 19.949 15.3907 18.8375 15.3907H15.8329L16.5836 12.5462Z"
                 fill="#141624"
               />
@@ -68,9 +68,13 @@ const Page = () => {
           </div>
           <div className="navlink">
             <Link to="/">Home</Link>
-            <Link to="/Blog">Blog</Link>
+            {user ? (
+              <Link to="/Blog">Blog</Link>
+            ) : (
+              <Link to="/Contact">Contact</Link>
+            )}
             <Link to="/Pages">Pages</Link>
-            <Link to="/Contact">Contact</Link>
+            {/* <Link to="/Contact">Contact</Link> */}
           </div>
 
           <div className="search">
@@ -80,31 +84,22 @@ const Page = () => {
                 placeholder="Search"
                 className="search-input"
               />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                className="search-icon"
-              >
-                <path
-                  d="M6.90906 2C5.93814 2 4.98903 2.28791 4.18174 2.82733C3.37444 3.36674 2.74524 4.13343 2.37368 5.03045C2.00213 5.92746 1.90491 6.91451 2.09433 7.86677C2.28375 8.81904 2.75129 9.69375 3.43783 10.3803C4.12438 11.0668 4.99909 11.5344 5.95135 11.7238C6.90362 11.9132 7.89067 11.816 8.78768 11.4444C9.6847 11.0729 10.4514 10.4437 10.9908 9.63639C11.5302 8.8291 11.8181 7.87998 11.8181 6.90906C11.818 5.60712 11.3008 4.35853 10.3802 3.43792C9.45959 2.51731 8.211 2.00008 6.90906 2Z"
-                  stroke="#52525B"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                />
-                <path
-                  d="M10.5718 10.5716L14.0002 14"
-                  stroke="#52525B"
-                  stroke-width="1.5"
-                  stroke-miterlimit="10"
-                  stroke-linecap="round"
-                />
-              </svg>
             </div>
             <>
-              <button className="btn">Sign-in</button>
+              {user ? (
+                <div className="pr-4">
+                  <>
+                    <span>{user.displayName}</span>
+                    <button onClick={onLogout}>Logout</button>
+                  </>
+                </div>
+              ) : (
+                <>
+                  <button className="btn" onClick={onSignIn}>
+                    Sign-in
+                  </button>
+                </>
+              )}
             </>
           </div>
         </div>
